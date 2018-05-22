@@ -43,11 +43,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         adapter.submitList(listOf(
-                ListItem(1, "Rick Sanchez", "A genius mad scientist who is the father of Beth Smith and the maternal grandfather of Morty"),
-                ListItem(1, "Morty Smith", "Rick's 14-year-old grandson who is frequently dragged into Rick's misadventures."),
-                ListItem(1, "Beth Smith", "Rick's daughter, Summer and Morty's mother, and Jerry's wife."),
-                ListItem(1, "Jerry Smith", "Summer and Morty's insecure father, Beth's husband, and Rick's son-in-law."),
-                ListItem(1, "Summer Smith", "Morty's 17-year-old older sister, a more conventional and often superficial teenager.")
+                ListItem(1, "Rick Sanchez",
+                        "A genius mad scientist who is the father of Beth Smith and the maternal grandfather of Morty",
+                        "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Rick_and_Morty_characters_-_Rick_Sanchez.jpg/110px-Rick_and_Morty_characters_-_Rick_Sanchez.jpg"),
+                ListItem(1, "Morty Smith",
+                        "Rick's 14-year-old grandson who is frequently dragged into Rick's misadventures.",
+                        "https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Rick_and_Morty_characters_-_Morty_Smith.jpg/110px-Rick_and_Morty_characters_-_Morty_Smith.jpg"),
+                ListItem(1, "Beth Smith",
+                        "Rick's daughter, Summer and Morty's mother, and Jerry's wife.",
+                        "https://upload.wikimedia.org/wikipedia/en/thumb/2/2f/Rick_and_Morty_characters_-_Beth_Smith.jpg/110px-Rick_and_Morty_characters_-_Beth_Smith.jpg"),
+                ListItem(1, "Jerry Smith",
+                        "Summer and Morty's insecure father, Beth's husband, and Rick's son-in-law.",
+                        "https://upload.wikimedia.org/wikipedia/en/thumb/5/54/Rick_and_Morty_characters_-_Jerry_Smith.jpg/110px-Rick_and_Morty_characters_-_Jerry_Smith.jpg"),
+                ListItem(1, "Summer Smith",
+                        "Morty's 17-year-old older sister, a more conventional and often superficial teenager.",
+                        "https://upload.wikimedia.org/wikipedia/en/thumb/e/ee/Rick_and_Morty_characters_-_Summer_Smith.jpg/110px-Rick_and_Morty_characters_-_Summer_Smith.jpg")
         ))
 
         list.adapter = adapter

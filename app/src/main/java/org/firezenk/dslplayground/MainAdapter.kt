@@ -6,7 +6,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 
 class MainAdapter : ListAdapter<ListItem, MainAdapter.ViewHolder>(ItemDiffCallback()) {
 
@@ -24,10 +26,12 @@ class MainAdapter : ListAdapter<ListItem, MainAdapter.ViewHolder>(ItemDiffCallba
 
         private val title = itemView.findViewById<TextView>(R.id.title)
         private val subtitle = itemView.findViewById<TextView>(R.id.subtitle)
+        private val image = itemView.findViewById<ImageView>(R.id.image)
 
         fun bind(item: ListItem, clickListener: (ListItem) -> Unit) {
             title.text = item.title
             subtitle.text = item.subtitle
+            Picasso.get().load(item.image).into(image);
             itemView.setOnClickListener { clickListener(item) }
         }
     }
