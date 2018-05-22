@@ -36,7 +36,6 @@
         android:id="@+id/viewForeground"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:paddingStart="@dimen/activity_horizontal_margin"
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:background="?android:attr/windowBackground">
 

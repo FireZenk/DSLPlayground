@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.squareup.picasso.Picasso
+import org.firezenk.dslplayground.util.dsl
 
 class MainAdapter : ListAdapter<ListItem, MainAdapter.ViewHolder>(ItemDiffCallback()) {
 
@@ -32,7 +32,7 @@ class MainAdapter : ListAdapter<ListItem, MainAdapter.ViewHolder>(ItemDiffCallba
         fun bind(item: ListItem, clickListener: (ListItem) -> Unit) {
             title.text = item.title
             subtitle.text = item.subtitle
-            Picasso.get().load(item.image).into(image);
+            image.dsl { url = item.image }
             itemView.setOnClickListener { clickListener(item) }
         }
     }

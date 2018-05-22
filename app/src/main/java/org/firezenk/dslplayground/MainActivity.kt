@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTo
 
     private fun setupAdapter() {
         adapter.setOnItemClickListener {
-            showToast("Clicked: $it.title")
+            showToast("Clicked: ${it.title}")
         }
 
         adapter.submitList(charactersList)
