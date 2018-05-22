@@ -24,6 +24,7 @@ class MainAdapter : ListAdapter<ListItem, MainAdapter.ViewHolder>(ItemDiffCallba
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val viewForeground = itemView.findViewById<View>(R.id.viewForeground)
         private val title = itemView.findViewById<TextView>(R.id.title)
         private val subtitle = itemView.findViewById<TextView>(R.id.subtitle)
         private val image = itemView.findViewById<ImageView>(R.id.image)
