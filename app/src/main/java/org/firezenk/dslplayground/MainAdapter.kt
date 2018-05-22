@@ -44,11 +44,11 @@ class MainAdapter : ListAdapter<ListItem, MainAdapter.ViewHolder>(ItemDiffCallba
 
 class ItemDiffCallback : DiffUtil.ItemCallback<ListItem>() {
 
-    override fun areItemsTheSame(oldItem: ListItem?, newItem: ListItem?): Boolean {
-        return oldItem?.id == newItem?.id
+    override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: ListItem?, newItem: ListItem?): Boolean {
+    override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
         return oldItem == newItem
     }
 }

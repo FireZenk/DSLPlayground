@@ -11,8 +11,6 @@ import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.DividerItemDecoration
 
-
-
 class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
     private val adapter = MainAdapter()
@@ -82,14 +80,14 @@ class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTo
             val deletedIndex = viewHolder.adapterPosition
             val deletedItem = charactersList[deletedIndex]
 
-            charactersList.removeAt(position);
-            adapter.submitList(charactersList)
+            charactersList.removeAt(position)
+            adapter.notifyItemRemoved(position)
 
             val snackbar = Snackbar.make(container, "$name removed!", Snackbar.LENGTH_LONG)
             with(snackbar) {
                 setAction("UNDO",  {
                     charactersList.add(deletedIndex, deletedItem)
-                    adapter.submitList(charactersList)
+                    adapter.notifyItemInserted(deletedIndex)
                 })
                 setActionTextColor(Color.YELLOW)
                 show()
