@@ -15,7 +15,7 @@ import org.firezenk.dslplayground.solutions.adapterDSL
 import org.firezenk.dslplayground.solutions.dsl
 import org.firezenk.dslplayground.util.dsl
 
-class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
+class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.Listener {
 
     private val itemDecoration by lazy {
         DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTo
                 }
                 click {
                     showToast("Clicked: ${it.title}")
+                }
+                swipe(R.id.viewForeground) {
+                    swipeDirs = ItemTouchHelper.LEFT
+                    listener = this@MainActivity
                 }
             }
             diff {
@@ -83,12 +87,7 @@ class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTo
         }
     }
 
-    private fun setupAdapter() {
-        adapter.submitList(charactersList)
-
-        val itemTouchHelperCallback = RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this)
-        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(list)
-    }
+    private fun setupAdapter() = adapter.submitList(charactersList)
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
         if (viewHolder is DSLAdapter.ViewHolder<*>) {
@@ -112,11 +111,8 @@ class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTo
         }
     }
 
-    private fun showToast(id: Int) {
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
-    }
+    private fun showToast(id: Int) = Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
 
-    private fun showToast(stringId: String) {
-        Toast.makeText(this, stringId, Toast.LENGTH_SHORT).show()
-    }
+    private fun showToast(stringId: String)
+            = Toast.makeText(this, stringId, Toast.LENGTH_SHORT).show()
 }

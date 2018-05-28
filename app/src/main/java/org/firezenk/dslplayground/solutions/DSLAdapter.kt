@@ -16,8 +16,11 @@ class DSLAdapter<M>(private val holderBuilder: HolderBuilder<M>,
     override fun onBindViewHolder(holder: ViewHolder<M>, position: Int)
             = holder.bind(getItem(position))
 
-    class ViewHolder<in M>(itemView: View, private val holderBuilder: HolderBuilder<M>)
+    class ViewHolder<in M>(itemView: View, swipeViewId: Int,
+                           private val holderBuilder: HolderBuilder<M>)
         : RecyclerView.ViewHolder(itemView) {
+
+        val swipeView: View = itemView.findViewById<View>(swipeViewId)
 
         fun bind(vm: M) = with(holderBuilder) {
             onBind(itemView, vm)
