@@ -46,15 +46,15 @@ class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTo
         navigation.dsl {
             menu = R.menu.navigation
             default = R.id.navigation_home
-            item {
+            +item {
                 id = R.id.navigation_home
                 action = { showToast(R.string.title_home) }
             }
-            item {
+            +item {
                 id = R.id.navigation_dashboard
                 action = { showToast(R.string.title_dashboard) }
             }
-            item {
+            +item {
                 id = R.id.navigation_notifications
                 action = { showToast(R.string.title_notifications) }
             }

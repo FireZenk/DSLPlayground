@@ -40,6 +40,8 @@ class BottomBarBuilder(private val target: BottomNavigationView) {
         this.id = id
         setup()
     }.build()
+
+    operator fun Pair<Int, () -> Unit>.unaryPlus() = items.add(this)
 }
 
 fun BottomNavigationView.dsl(setup: BottomBarBuilder.() -> Unit) {
