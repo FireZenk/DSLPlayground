@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.DividerItemDecoration
+import org.firezenk.dslplayground.solutions.dsl
 
 class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
@@ -38,25 +39,26 @@ class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTo
 
         setupAdapter()
 
-        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        setupNavigation()
     }
 
-    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                showToast(R.string.title_home)
-                return@OnNavigationItemSelectedListener true
+    private fun setupNavigation() {
+        navigation.dsl {
+            menu = R.menu.navigation
+            default = R.id.navigation_home
+            item {
+                id = R.id.navigation_home
+                action = { showToast(R.string.title_home) }
             }
-            R.id.navigation_dashboard -> {
-                showToast(R.string.title_dashboard)
-                return@OnNavigationItemSelectedListener true
+            item {
+                id = R.id.navigation_dashboard
+                action = { showToast(R.string.title_dashboard) }
             }
-            R.id.navigation_notifications -> {
-                showToast(R.string.title_notifications)
-                return@OnNavigationItemSelectedListener true
+            item {
+                id = R.id.navigation_notifications
+                action = { showToast(R.string.title_notifications) }
             }
         }
-        false
     }
 
     private fun setupAdapter() {
