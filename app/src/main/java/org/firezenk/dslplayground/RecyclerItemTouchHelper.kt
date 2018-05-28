@@ -13,31 +13,30 @@ class RecyclerItemTouchHelper(dragDirs: Int, swipeDirs: Int,
 
     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
         if (viewHolder != null) {
-            val foregroundView = (viewHolder as MainAdapter.ViewHolder).viewForeground
-            ItemTouchHelper.Callback.getDefaultUIUtil().onSelected(foregroundView)
+            //val foregroundView = (viewHolder as DSLAdapter.ViewHolder<*>).viewForeground
+            //ItemTouchHelper.Callback.getDefaultUIUtil().onSelected(foregroundView)
         }
     }
 
     override fun onChildDrawOver(c: Canvas, recyclerView: RecyclerView,
                                  viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float,
                                  actionState: Int, isCurrentlyActive: Boolean) {
-        val foregroundView = (viewHolder as MainAdapter.ViewHolder).viewForeground
-        ItemTouchHelper.Callback.getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY,
-                actionState, isCurrentlyActive)
+        //val foregroundView = (viewHolder as DSLAdapter.ViewHolder<*>).viewForeground
+        //ItemTouchHelper.Callback.getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY,
+        //        actionState, isCurrentlyActive)
     }
 
     override fun clearView(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder) {
-        val foregroundView = (viewHolder as MainAdapter.ViewHolder).viewForeground
-        ItemTouchHelper.Callback.getDefaultUIUtil().clearView(foregroundView)
+        //val foregroundView = (viewHolder as DSLAdapter.ViewHolder<*>).viewForeground
+        //ItemTouchHelper.Callback.getDefaultUIUtil().clearView(foregroundView)
     }
 
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView,
                              viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float,
                              actionState: Int, isCurrentlyActive: Boolean) {
-        val foregroundView = (viewHolder as MainAdapter.ViewHolder).viewForeground
-
-        ItemTouchHelper.Callback.getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY,
-                actionState, isCurrentlyActive)
+        //val foregroundView = (viewHolder as DSLAdapter.ViewHolder<*>).viewForeground
+        //ItemTouchHelper.Callback.getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY,
+        //        actionState, isCurrentlyActive)
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int)

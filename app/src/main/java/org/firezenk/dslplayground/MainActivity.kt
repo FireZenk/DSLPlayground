@@ -1,20 +1,44 @@
 package org.firezenk.dslplayground
 
+import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.support.design.widget.Snackbar
-import android.graphics.Color
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.DividerItemDecoration
+import kotlinx.android.synthetic.main.list_item.view.*
+import org.firezenk.dslplayground.solutions.DSLAdapter
+import org.firezenk.dslplayground.solutions.adapterDSL
 import org.firezenk.dslplayground.solutions.dsl
+import org.firezenk.dslplayground.util.dsl
 
 class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
-    private val adapter = MainAdapter()
+    private val itemDecoration by lazy {
+        DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+    }
+
+    private val adapter: DSLAdapter<ListItem> by lazy {
+        adapterDSL<ListItem>(list, itemDecoration) {
+            item(R.layout.list_item) {
+                bindView { view, item ->
+                    view.title.text = item.title
+                    view.subtitle.text = item.subtitle
+                    view.image.dsl { url = item.image }
+                }
+                click {
+                    showToast("Clicked: ${it.title}")
+                }
+            }
+            diff {
+                it.id
+            }
+        }
+    }
+
     private val charactersList = mutableListOf(
             ListItem(1, "Rick Sanchez",
                     "A genius mad scientist who is the father of Beth Smith and the maternal grandfather of Morty",
@@ -42,41 +66,32 @@ class MainActivity : AppCompatActivity(), RecyclerItemTouchHelper.RecyclerItemTo
         setupNavigation()
     }
 
-    private fun setupNavigation() {
-        navigation.dsl {
-            menu = R.menu.navigation
-            default = R.id.navigation_home
-            +item {
-                id = R.id.navigation_home
-                action = { showToast(R.string.title_home) }
-            }
-            +item {
-                id = R.id.navigation_dashboard
-                action = { showToast(R.string.title_dashboard) }
-            }
-            +item {
-                id = R.id.navigation_notifications
-                action = { showToast(R.string.title_notifications) }
-            }
+    private fun setupNavigation() = navigation.dsl {
+        menu = R.menu.navigation
+        default = R.id.navigation_home
+        +item {
+            id = R.id.navigation_home
+            action = { showToast(R.string.title_home) }
+        }
+        +item {
+            id = R.id.navigation_dashboard
+            action = { showToast(R.string.title_dashboard) }
+        }
+        +item {
+            id = R.id.navigation_notifications
+            action = { showToast(R.string.title_notifications) }
         }
     }
 
     private fun setupAdapter() {
-        adapter.setOnItemClickListener {
-            showToast("Clicked: ${it.title}")
-        }
-
         adapter.submitList(charactersList)
 
         val itemTouchHelperCallback = RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this)
         ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(list)
-
-        list.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        list.adapter = adapter
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
-        if (viewHolder is MainAdapter.ViewHolder) {
+        if (viewHolder is DSLAdapter.ViewHolder<*>) {
             val name = charactersList[viewHolder.adapterPosition].title
 
             val deletedIndex = viewHolder.adapterPosition
