@@ -5,4 +5,4 @@ Project to be worked in the Kotlin DSL Workshop
 
 Event: https://www.meetup.com/es-ES/Barcelona-Android-Developer-Group/events/251010339/
 
-Slides: [TODO()]()
+Slides: https://speakerdeck.com/firezenk/badg-kotlin-dsl-workshop
